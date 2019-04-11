@@ -1,19 +1,41 @@
 import { Todo } from './../dto/todo';
-import { Controller, Get, Req, Param, Post, Body } from '@nestjs/common';
+import { TodoService } from './todo.service';
+import {
+  Controller,
+  Get,
+  Req,
+  Param,
+  Post,
+  Body,
+  Put,
+  Delete,
+} from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 
 @Controller('todo')
 export class TodoController {
-    @Get()
-    findAll(): Observable<Todo[]> {
-        return of([{id: 0, title: 'David Bowie'}]);
-      }
-    @Get(':id')
-    findOne(@Param('id') id): string {
-        return `This action returns a #${id} todo`;
-    }
-    @Post()
-    async create(@Body() todo: Todo) {
-        return 'adding new todo: ' + todo.title;
-    }
+  constructor(private todoService: TodoService) {}
+
+  @Get()
+  findAll(): Observable<Todo[]> {
+    return of(this.todoService.findAll());
+  }
+  @Get(':id')
+  findOne(@Param('id') id): Todo {
+    return { id, title: `This action returns a #${id} todo` };
+  }
+  @Post()
+  async create(@Body() todo: Todo) {
+    this.todoService.create(todo);
+    return todo;
+  }
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updateTodo: Todo): Todo {
+    return { id, title: `${updateTodo.title}, id: #${id} todo` };
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number): Todo {
+    return { id, title: `This action removes a #${id} todo` };
+  }
 }
