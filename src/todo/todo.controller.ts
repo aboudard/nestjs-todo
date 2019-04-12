@@ -1,4 +1,5 @@
 import { Todo } from './../dto/todo';
+import { HttpExceptionFilter } from './../common/filter/http-exception.filter';
 import { TodoService } from './todo.service';
 import {
   Controller,
@@ -9,6 +10,9 @@ import {
   Body,
   Put,
   Delete,
+  HttpException,
+  HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 
@@ -30,12 +34,23 @@ export class TodoController {
     return todo;
   }
   @Put(':id')
-  update(@Param('id') id: number, @Body() updateTodo: Todo): Todo {
+  async update(
+    @Param('id') id: number,
+    @Body() updateTodo: Todo,
+  ): Promise<Todo> {
     return { id, title: `${updateTodo.title}, id: #${id} todo` };
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number): Todo {
-    return { id, title: `This action removes a #${id} todo` };
+  @UseFilters(new HttpExceptionFilter())
+  async remove(@Param('id') id: number): Promise<Todo> {
+    // return { id, title: `This action removes a #${id} todo` };
+    throw new HttpException(
+      {
+        error: 'Accès impossible : interdit',
+        status: HttpStatus.FORBIDDEN,
+      },
+      403,
+    );
   }
 }
