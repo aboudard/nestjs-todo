@@ -25,8 +25,8 @@ export class TodoController {
     return of(this.todoService.findAll());
   }
   @Get(':id')
-  findOne(@Param('id') id): Todo {
-    return { id, title: `This action returns a #${id} todo` };
+  findOne(@Param('id') id): Observable<Todo> {
+    return of(this.todoService.find(id));
   }
   @Post()
   async create(@Body() todo: Todo) {
@@ -38,7 +38,12 @@ export class TodoController {
     @Param('id') id: number,
     @Body() updateTodo: Todo,
   ): Promise<Todo> {
-    return { id, title: `${updateTodo.title}, id: #${id} todo` };
+    return {
+      id,
+      title: `${updateTodo.title}, id: #${id} todo`,
+      active: true,
+      description: 'fake todo',
+    };
   }
 
   @Delete(':id')

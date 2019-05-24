@@ -9,4 +9,10 @@ export class Todo {
   /** titre du todo */
   @ApiModelProperty()
   readonly title: string;
+  /** description du todo */
+  @ApiModelProperty()
+  readonly description: string;
+  /** statut actif du todo */
+  @ApiModelProperty()
+  readonly active: boolean;
 }

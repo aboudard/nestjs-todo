@@ -12,4 +12,10 @@ export class TodoService {
   findAll(): Todo[] {
     return this.todos;
   }
+
+  find(id: number): Todo {
+    return this.todos.find(item => {
+      return item.id == id;
+    });
+  }
 }
