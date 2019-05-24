@@ -48,14 +48,14 @@ export class TodoController {
 
   @Delete(':id')
   @UseFilters(new HttpExceptionFilter())
-  async remove(@Param('id') id: number): Promise<Todo> {
-    // return { id, title: `This action removes a #${id} todo` };
-    throw new HttpException(
+  async remove(@Param('id') id: number): Promise<void> {
+    return this.todoService.remove(id);
+    /* throw new HttpException(
       {
         error: 'Accès impossible : interdit',
         status: HttpStatus.FORBIDDEN,
       },
       403,
-    );
+    ); */
   }
 }
