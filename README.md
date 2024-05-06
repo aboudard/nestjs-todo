@@ -4,6 +4,8 @@
 
 ## Description
 
+NestJs Todo Application
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
@@ -25,29 +27,11 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+### Swagger UI
 
-```bash
-# unit tests
-$ npm run test
+http://localhost:3000/api/
 
-# e2e tests
-$ npm run test:e2e
+## Request data
 
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+http://localhost:3000 - GET - Hello World!
+http://localhost:3000/todo - REST api
