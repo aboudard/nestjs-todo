@@ -1,20 +1,17 @@
-import { Todo } from './../dto/todo';
-import { HttpExceptionFilter } from './../common/filter/http-exception.filter';
-import { TodoService } from './todo.service';
 import {
+  Body,
   Controller,
+  Delete,
   Get,
-  Req,
   Param,
   Post,
-  Body,
   Put,
-  Delete,
-  HttpException,
-  HttpStatus,
   UseFilters,
 } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
+import { HttpExceptionFilter } from './../common/filter/http-exception.filter';
+import { Todo } from './../dto/todo';
+import { TodoService } from './todo.service';
 
 @Controller('todo')
 export class TodoController {

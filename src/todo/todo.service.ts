@@ -31,13 +31,13 @@ export class TodoService {
   }
 
   find(id: number): Todo {
-    return this.todos.find(item => {
+    return this.todos.find((item) => {
       return item.id == id;
     });
   }
 
   remove(id: number): void {
-    this.todos = this.todos.filter(item => {
+    this.todos = this.todos.filter((item) => {
       return item.id != id;
     });
   }
